@@ -9,6 +9,7 @@ export interface ProductVariant {
 
 export interface ProductDetail {
   slug: string;
+  aliases?: string[];
   title: string;
   tag: string;
   subtitle: string;
@@ -46,14 +47,15 @@ export interface ProductDetail {
 
 export const productsData: ProductDetail[] = [
   {
-    slug: "upvc-manufacturing",
-    title: "uPVC Manufacturing",
-    tag: "01 / Precision Fabrication",
-    subtitle: "Engineered Window & Door Systems",
-    copy: "Precision-manufactured uPVC window and door systems built for acoustic isolation, thermal efficiency, and long-term durability.",
+    slug: "upvc-windows-doors",
+    aliases: ["upvc-manufacturing", "upvc-windows-and-doors"],
+    title: "uPVC Windows & Doors",
+    tag: "01 / aluplast® German Systems",
+    subtitle: "German Engineered Window & Door Systems",
+    copy: "Energy-efficient, multi-chambered German aluplast® uPVC window and door systems structurally engineered for luxurious lasting beauty and superior acoustic insulation.",
     heroImage: "https://images.unsplash.com/photo-1717386255767-52643970d483?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "Aperture's automated uPVC extrusion and fabrication facility delivers multi-chambered window and door assemblies engineered to withstand extreme temperature differentials, high wind loads, and urban acoustic pressure. Every profile is reinforced with galvanized steel and equipped with German-engineered hardware for decades of effortless operation.",
+      "Srikala Projects' state-of-the-art fabrication facility delivers multi-chambered aluplast® German uPVC window and door systems engineered to withstand extreme temperature differentials, high wind loads, and urban acoustic pressure. Featuring premier profiles like IDEAL 1000, 2000, 4000, smart-slide, and prima-slide with architectural aludec and woodec laminations, every frame is reinforced with galvanized box steel for decades of effortless operation.",
     capabilitiesTitle: "Manufacturing Rigour & Engineering",
     capabilities: [
       {
@@ -195,13 +197,14 @@ export const productsData: ProductDetail[] = [
   },
   {
     slug: "heavy-fabrication",
-    title: "Heavy Fabrication",
+    aliases: ["heavy-steel-fabrication"],
+    title: "Heavy Steel Fabrication",
     tag: "02 / Structural Steel",
     subtitle: "Engineered Heavy Industrial Steelworks",
     copy: "Engineered steel fabrication, CNC plasma profiled components, and massive structural assemblies for demanding infrastructure and industrial projects.",
     heroImage: "https://images.unsplash.com/photo-1598302936625-6075fbd98dd7?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "From heavy built-up plate girders and multi-ton crane gantries to complex spatial architectural trusses, Aperture's heavy fabrication division provides turnkey structural engineering. Our facilities feature CNC high-definition plasma profiling, automated submerged-arc welding (SAW), and shot-blasting bays to execute the most demanding structural specs.",
+      "From heavy built-up plate girders and multi-ton overhead crane gantries to complex spatial industrial trusses, Srikala Projects' heavy fabrication division provides turnkey structural engineering. Our Mankal manufacturing hub features CNC high-definition plasma profiling, automated submerged-arc welding (SAW), and shot-blasting bays to execute the most demanding structural specifications.",
     capabilitiesTitle: "Industrial Infrastructure & Steel Fabrication",
     capabilities: [
       {
@@ -341,13 +344,14 @@ export const productsData: ProductDetail[] = [
   },
   {
     slug: "peb-solutions",
-    title: "PEB Solutions",
-    tag: "03 / Pre-Engineered Buildings",
-    subtitle: "Turnkey Pre-Engineered Building Systems",
-    copy: "Efficient pre-engineered building systems designed for clear spans, rapid erection, structural integrity, and architectural flexibility.",
+    aliases: ["pre-engineered-buildings", "peb"],
+    title: "Pre-Engineered Buildings",
+    tag: "03 / Turnkey PEB Infrastructure",
+    subtitle: "High-Strength Structural Steel Warehouses & Sheds",
+    copy: "High-strength structural steel warehouses, PEB industrial sheds, and multi-story structural steel frames designed for maximum volumetric efficiency.",
     heroImage: "https://images.unsplash.com/photo-1694885169342-909981fb408a?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "Aperture PEB Systems provide end-to-end design, manufacturing, and erection of high-performance pre-engineered steel buildings. By optimizing tapered steel columns and rafters based on internal bending moments, our PEB structures save 30% in steel weight, cut construction time by half, and achieve column-free clear spans exceeding 60 meters.",
+      "Srikala Projects PEB Systems provide end-to-end design, manufacturing, and erection of high-performance pre-engineered steel buildings. By optimizing tapered steel columns and rafters based on internal bending moments, our PEB structures save 30% in steel weight, cut construction time by half, and achieve column-free clear spans exceeding 60 meters.",
     capabilitiesTitle: "Turnkey Building Systems & Value Engineering",
     capabilities: [
       {
@@ -488,13 +492,14 @@ export const productsData: ProductDetail[] = [
   },
   {
     slug: "roofing-systems",
+    aliases: ["industrial-roofing"],
     title: "Roofing Systems",
-    tag: "04 / High-Performance Envelopes",
-    subtitle: "Industrial & Architectural Roofing Systems",
-    copy: "High-performance roofing assemblies, standing seam profiles, and insulated composite panels engineered for total weather tightness.",
+    tag: "04 / Envelope Protection",
+    subtitle: "Industrial Standing-Seam & Sandwich Roofing",
+    copy: "Advanced industrial roofing solutions with standing-seam leak-proof tech, high solar reflectivity (SRI), and superior corrosion resistance.",
     heroImage: "https://images.unsplash.com/photo-1602193230480-7840a38eb0c3?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "Aperture Roofing Systems provide advanced building envelope protection against extreme rainfall, tropical solar radiation, and gale-force cyclonic winds. Specializing in 360° mechanically seamed standing seam roofs and thermal sandwich panels, our roofing solutions eliminate through-fastener puncture leaks, accommodate thermal expansion, and ensure decades of maintenance-free performance.",
+      "Srikala Projects Roofing Systems provide advanced building envelope protection against extreme rainfall, tropical solar radiation, and gale-force cyclonic winds. Specializing in 360° mechanically seamed standing seam roofs and thermal sandwich panels, our roofing solutions eliminate through-fastener puncture leaks, accommodate thermal expansion, and ensure decades of maintenance-free performance.",
     capabilitiesTitle: "Watertight Integrity & Thermal Performance",
     capabilities: [
       {
@@ -628,19 +633,20 @@ export const productsData: ProductDetail[] = [
     ],
     faqs: [
       { question: "Why is a Standing Seam roof better than conventional screw-down sheets?", answer: "Conventional sheets use exposed screws that pierce the sheet. Over time, thermal movement enlarges these holes and degrades rubber washers, causing leaks. Standing seam uses hidden floating clips under the seam with zero holes through the roof panel." },
-      { question: "Can we install solar panels on an Aperture standing seam roof?", answer: "Yes! Special non-penetrating S-5! aluminum clamps lock directly onto the standing seam ribs without piercing the roof sheet, preserving 100% of the watertight warranty." },
+      { question: "Can we install solar panels on a Srikala Projects standing seam roof?", answer: "Yes! Special non-penetrating S-5! aluminum clamps lock directly onto the standing seam ribs without piercing the roof sheet, preserving 100% of the watertight warranty." },
       { question: "What slope can your standing seam system accommodate?", answer: "Our standing seam can safely drain water on slopes as low as 1.5 degrees (1:40 pitch) due to the 50mm high ribs and continuous non-spliced pan lengths." },
     ],
   },
   {
     slug: "acp-cladding",
-    title: "ACP Cladding",
-    tag: "05 / Façade Architecture",
-    subtitle: "Architectural Aluminium Composite Façades",
-    copy: "Contemporary aluminium composite panels, ventilated rainscreen systems, and parametric perforated facades built to transform commercial structures.",
+    aliases: ["acp-facade-cladding", "cladding-systems"],
+    title: "ACP Cladding Systems",
+    tag: "05 / Facade Engineering",
+    subtitle: "Class A2 Fire-Retardant Architectural Facades",
+    copy: "High-grade aluminum composite panels for exterior facade protection, featuring class A2 fire-retardant cores and PVDF weather coatings.",
     heroImage: "https://images.unsplash.com/photo-1642887534384-81c81882dd1a?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "Aperture ACP Cladding turns building exteriors into sculptural architectural statements. Utilizing premium fire-rated Class A2 and B1 mineral-core panels with 70% Kynar 500 PVDF coatings, our ventilated rainscreen facades combine high thermal insulation, acoustic reduction, weatherproofing, and striking modern aesthetics with 20-year color-fast warranties.",
+      "Srikala Projects ACP Cladding turns building exteriors into sculptural architectural statements. Utilizing premium fire-rated Class A2 and B1 mineral-core panels with 70% Kynar 500 PVDF coatings, our ventilated rainscreen facades combine high thermal insulation, acoustic reduction, weatherproofing, and striking modern aesthetics with 20-year color-fast warranties.",
     capabilitiesTitle: "Façade Engineering & Fire Safety",
     capabilities: [
       {
@@ -781,13 +787,14 @@ export const productsData: ProductDetail[] = [
   },
   {
     slug: "structural-glazing",
+    aliases: ["curtain-walls", "glazing-systems"],
     title: "Structural Glazing",
     tag: "06 / Glass Architecture",
-    subtitle: "Architectural Glass & Curtain Wall Systems",
-    copy: "Integrated structural glazing, unitized curtain walls, spider-point facades, and acoustic glass systems that bring light and technical precision.",
+    subtitle: "Unitized Curtain Walls & Spider Glazing Systems",
+    copy: "Sophisticated architectural glass facades, unitized curtain walls, and high-performance weather-tight spider glazing for landmark buildings.",
     heroImage: "https://images.unsplash.com/photo-1523477593243-78bbf626fd3b?auto=format&fit=crop&w=1920&q=85",
     overview:
-      "Aperture Structural Glazing blends interior spaces with the external skyline through engineered transparency. Utilizing four-sided silicone structural glazing, unitized curtain wall cassettes, and point-fixed spider glass networks with solar-control Low-E coatings, our systems maximize natural daylight while dramatically reducing heat gain and acoustic noise.",
+      "Srikala Projects Structural Glazing blends interior spaces with the external skyline through engineered transparency. Utilizing four-sided silicone structural glazing, unitized curtain wall cassettes, and point-fixed spider glass networks with solar-control Low-E coatings, our systems maximize natural daylight while dramatically reducing heat gain and acoustic noise.",
     capabilitiesTitle: "Transparency, Acoustic Control & Structural Engineering",
     capabilities: [
       {

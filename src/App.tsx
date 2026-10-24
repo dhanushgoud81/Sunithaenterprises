@@ -1,6 +1,7 @@
 import { useState, useEffect, type FormEvent, type ReactNode } from "react";
 import { productsData } from "./data/products";
 import ProductPage from "./components/ProductPage";
+import SolutionsHub from "./components/SolutionsHub";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&fit=crop&w=2000&q=90",
@@ -60,10 +61,10 @@ function Brand({ onNavigate }: { onNavigate: (path: string) => void }) {
         e.preventDefault();
         onNavigate("/");
       }}
-      aria-label="Aperture home"
+      aria-label="Srikala Projects Home"
     >
       <span className="brand-mark"><span /></span>
-      <span><strong>APERTURE</strong><small>ARCHITECTURAL SYSTEMS</small></span>
+      <span><strong>SRIKALA PROJECTS</strong><small>ENGINEERING & uPVC SYSTEMS</small></span>
     </a>
   );
 }
@@ -80,40 +81,55 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
 
   return (
     <>
+      {/* Top Industrial Info Bar */}
+      <div className="top-info-bar">
+        <div className="page-shell top-info-inner">
+          <div className="top-info-left">
+            <span>🏭 Mankal Industrial Area, Ranga Reddy, Telangana</span>
+            <span className="top-sep">|</span>
+            <span>⭐ Over 40 Years of Engineering Integrity</span>
+          </div>
+          <div className="top-info-right">
+            <a href="tel:+919866089771">📞 +91 98660 89771</a>
+            <span className="top-sep">|</span>
+            <a href="mailto:sales@srikalaprojects.com">✉️ sales@srikalaprojects.com</a>
+            <span className="top-sep">|</span>
+            <a
+              href="https://m.indiamart.com/srikalaprojects/"
+              target="_blank"
+              rel="noreferrer"
+              className="indiamart-badge"
+            >
+              IndiaMART Verified
+            </a>
+          </div>
+        </div>
+      </div>
+
       <header className="site-header">
         <div className="header-inner">
           <Brand onNavigate={onNavigate} />
           <nav className="desktop-nav" aria-label="Main navigation">
+            <a
+              className="nav-item nav-highlight"
+              href="/solutions"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/solutions");
+              }}
+            >
+              Solutions
+            </a>
             <button
               className="nav-item"
               onClick={() => setProductsOpen(!productsOpen)}
               aria-expanded={productsOpen}
             >
-              Products <Icon name="chevron" size={15} />
+              Divisions <Icon name="chevron" size={15} />
             </button>
             <a
               className="nav-item"
-              href="#process"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("/#process");
-              }}
-            >
-              Services
-            </a>
-            <a
-              className="nav-item"
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("/#projects");
-              }}
-            >
-              Projects
-            </a>
-            <a
-              className="nav-item"
-              href="#why"
+              href="/#why"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick("/#why");
@@ -123,7 +139,27 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
             </a>
             <a
               className="nav-item"
-              href="#contact"
+              href="/#process"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#process");
+              }}
+            >
+              Process
+            </a>
+            <a
+              className="nav-item"
+              href="/#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#projects");
+              }}
+            >
+              Projects
+            </a>
+            <a
+              className="nav-item"
+              href="/#contact"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick("/#contact");
@@ -154,24 +190,39 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
         {productsOpen && (
           <div className="product-menu">
             <div className="product-menu-inner">
-              <div>
-                <p className="eyebrow">Product Collections</p>
-                <h3>Systems for every architectural scale.</h3>
-              </div>
-              {productsData.map((item, index) => (
+              <div className="product-menu-header-col">
+                <p className="eyebrow">Engineering Divisions</p>
+                <h3>Six core capabilities. One unified standard.</h3>
                 <a
-                  href={`/solutions/${item.slug}`}
-                  key={item.slug}
+                  href="/solutions"
+                  className="solutions-hub-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(`/solutions/${item.slug}`);
+                    handleNavClick("/solutions");
                   }}
                 >
-                  <span>0{index + 1}</span>
-                  {item.title}
-                  <Icon name="arrow" size={17} />
+                  Browse Full Solutions Catalog →
                 </a>
-              ))}
+              </div>
+              <div className="product-menu-items-grid">
+                {productsData.map((item, index) => (
+                  <a
+                    href={`/solutions/${item.slug}`}
+                    key={item.slug}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(`/solutions/${item.slug}`);
+                    }}
+                  >
+                    <span>0{index + 1}</span>
+                    <div className="p-menu-text">
+                      <strong>{item.title}</strong>
+                      <small>{item.subtitle}</small>
+                    </div>
+                    <Icon name="arrow" size={17} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -186,13 +237,23 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
         </div>
         <nav>
           <a
+            href="/solutions"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/solutions");
+            }}
+            style={{ fontWeight: "700", color: "var(--accent)" }}
+          >
+            <span>★</span>All Solutions Hub<Icon name="arrow" />
+          </a>
+          <a
             href="/#products"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("/#products");
             }}
           >
-            <span>01</span>All Products<Icon name="arrow" />
+            <span>01</span>Overview Directory<Icon name="arrow" />
           </a>
           {productsData.map((p, idx) => (
             <a
@@ -202,11 +263,20 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
                 e.preventDefault();
                 handleNavClick(`/solutions/${p.slug}`);
               }}
-              style={{ fontSize: "20px", padding: "12px 0" }}
+              style={{ fontSize: "18px", padding: "10px 0" }}
             >
-              <span>{idx + 1}</span>{p.title}<Icon name="arrow" size={18} />
+              <span>0{idx + 1}</span>{p.title}<Icon name="arrow" size={18} />
             </a>
           ))}
+          <a
+            href="/#why"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/#why");
+            }}
+          >
+            <span>07</span>About Srikala<Icon name="arrow" />
+          </a>
           <a
             href="/#process"
             onClick={(e) => {
@@ -214,7 +284,7 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
               handleNavClick("/#process");
             }}
           >
-            <span>07</span>Process<Icon name="arrow" />
+            <span>08</span>Process<Icon name="arrow" />
           </a>
           <a
             href="/#contact"
@@ -223,7 +293,7 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
               handleNavClick("/#contact");
             }}
           >
-            <span>08</span>Contact<Icon name="arrow" />
+            <span>09</span>Contact & Plant Location<Icon name="arrow" />
           </a>
         </nav>
         <a
@@ -234,7 +304,7 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
             handleNavClick("/#contact");
           }}
         >
-          Start your project <Icon name="arrow" />
+          Request Proposal <Icon name="arrow" />
         </a>
       </div>
     </>
@@ -244,24 +314,26 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
 function Hero({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <section className="hero" id="top">
-      <img className="hero-image" src={images.hero} alt="Contemporary architectural glazing at dusk" />
+      <img className="hero-image" src={images.hero} alt="Precision industrial steel fabrication and architectural facade" />
       <div className="hero-overlay" />
       <div className="hero-content page-shell">
         <div className="hero-copy">
-          <p className="eyebrow eyebrow-light"><span /> Manufacturing · Fabrication · Building systems</p>
-          <h1>Built with precision.<br /><em>Shaped for progress.</em></h1>
-          <p className="hero-description">Integrated manufacturing, structural and building-envelope solutions for ambitious industrial, commercial and architectural projects.</p>
+          <p className="eyebrow eyebrow-light"><span /> Heavy Steel Fabrication · Turnkey PEB · German aluplast® uPVC</p>
+          <h1>BUILDING THE FUTURE.<br /><em>Engineered with Precision.</em></h1>
+          <p className="hero-description">
+            Over 40 years of engineering integrity in heavy steel fabrication, pre-engineered buildings (PEB),
+            advanced industrial roofing, and luxury German aluplast® uPVC window & door systems.
+          </p>
           <div className="button-row">
             <a
               className="button button-light"
-              href="#products"
+              href="/solutions"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById("products");
-                el?.scrollIntoView({ behavior: "smooth" });
+                onNavigate("/solutions");
               }}
             >
-              Explore products <Icon name="arrow" />
+              Explore All Solutions <Icon name="arrow" />
             </a>
             <a
               className="text-link text-link-light"
@@ -278,7 +350,7 @@ function Hero({ onNavigate }: { onNavigate: (path: string) => void }) {
         </div>
         <div className="hero-note">
           <span className="hero-note-line" />
-          <div><small>Integrated capability</small><p>From fabrication<br />to final installation</p></div>
+          <div><small>ISO Certified Facility</small><p>Turnkey design, fabrication<br />to final site erection</p></div>
         </div>
         <div className="hero-index"><span>01</span><div><i /><i /><i /></div><span>06</span></div>
       </div>
@@ -290,8 +362,16 @@ function Products({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <section className="section page-shell" id="products">
       <div className="section-heading split-heading">
-        <div><p className="eyebrow">Our Solutions</p><h2>Six capabilities.<br /><em>One trusted partner.</em></h2></div>
-        <div><p>Explore our complete portfolio of manufacturing, structural and building-envelope solutions—each delivered with equal focus and technical rigour.</p></div>
+        <div>
+          <p className="eyebrow">Our Solutions</p>
+          <h2>Six engineering divisions.<br /><em>One trusted partner.</em></h2>
+        </div>
+        <div>
+          <p>
+            Explore our complete portfolio of heavy structural steel, pre-engineered building systems, and
+            luxury architectural building envelopes—each delivered with ISO 9001 rigour.
+          </p>
+        </div>
       </div>
       <div className="product-grid">
         {productsData.map((category) => (
@@ -328,24 +408,29 @@ function Engineering() {
     <section className="engineering">
       <div className="page-shell engineering-grid">
         <div className="engineering-copy">
-          <p className="eyebrow eyebrow-light">Built differently</p>
+          <p className="eyebrow eyebrow-light">German Engineering & Heavy Statics</p>
           <h2>Performance is in<br /><em>the details.</em></h2>
-          <p>Every component works as one—from reinforced profiles and precision hardware to glazing and compression seals.</p>
-          <a className="text-link text-link-light" href="#contact">Explore our engineering <Icon name="arrow" size={17} /></a>
+          <p>
+            Every assembly is manufactured to exacting tolerances—from CNC plasma profiled heavy plate connections
+            and robotic SAW submerged arc welds to German aluplast® multi-chambered uPVC profiles and acoustic DGU glazing.
+          </p>
+          <a className="text-link text-link-light" href="#contact">
+            Consult our engineering desk <Icon name="arrow" size={17} />
+          </a>
         </div>
-        <div className="window-visual" aria-label="Technical illustration of a window system">
+        <div className="window-visual" aria-label="Technical illustration of precision structural assembly">
           <div className="window-frame">
             <div className="window-glass"><div className="window-reflection" /></div>
             <div className="window-handle" />
           </div>
-          <div className="tech-label tech-one"><span>01</span><i />Reinforced profile</div>
-          <div className="tech-label tech-two"><span>02</span><i />Double glazing</div>
-          <div className="tech-label tech-three"><span>03</span><i />Secure hardware</div>
+          <div className="tech-label tech-one"><span>01</span><i />Galvanized box steel reinforcement</div>
+          <div className="tech-label tech-two"><span>02</span><i />Thermal & acoustic multi-chamber</div>
+          <div className="tech-label tech-three"><span>03</span><i />Certified AWS D1.1 welded statics</div>
         </div>
         <div className="spec-strip">
-          <div><strong>Multi-chamber</strong><span>Profile construction</span></div>
-          <div><strong>Custom</strong><span>Glass configurations</span></div>
-          <div><strong>Multi-point</strong><span>Security hardware</span></div>
+          <div><strong>Multi-Chamber</strong><span>German aluplast® profiles</span></div>
+          <div><strong>AWS D1.1</strong><span>Certified structural welding</span></div>
+          <div><strong>IS 2062 / E350</strong><span>High-tensile structural steel</span></div>
         </div>
       </div>
     </section>
@@ -353,10 +438,26 @@ function Engineering() {
 }
 
 const benefits = [
-  { icon: "ruler" as IconName, title: "Made to measure", copy: "Every system is considered for your opening, context and design intent." },
-  { icon: "layers" as IconName, title: "Material quality", copy: "Carefully selected profiles, glass and hardware for dependable daily use." },
-  { icon: "sun" as IconName, title: "Comfort considered", copy: "Glazing and sealing options designed around light, sound and changing weather." },
-  { icon: "shield" as IconName, title: "Secure by design", copy: "Robust frames and multi-point hardware options for added peace of mind." },
+  {
+    icon: "shield" as IconName,
+    title: "Quality Assurance",
+    copy: "ISO 9001 certified manufacturing with rigorous Ultrasonic Testing (UT) and 100% NDT inspection protocols.",
+  },
+  {
+    icon: "layers" as IconName,
+    title: "Tested Durability",
+    copy: "Corrosion-resistant Galvalume, certified hot-dip galvanization, and UV-stabilized German tropicalized compounds.",
+  },
+  {
+    icon: "sun" as IconName,
+    title: "Innovation Driven",
+    copy: "Continuous R&D in structural engineering, tapered PEB column statics, and thermal acoustic envelope efficiency.",
+  },
+  {
+    icon: "ruler" as IconName,
+    title: "Timely Delivery",
+    copy: "Integrated in-house CNC cutting, automated fabrication bays, and lean logistics for on-schedule site completion.",
+  },
 ];
 
 function WhyUs() {
@@ -364,8 +465,14 @@ function WhyUs() {
     <section className="section why-section" id="why">
       <div className="page-shell">
         <div className="section-heading centered-heading">
-          <p className="eyebrow">The Aperture standard</p>
-          <h2>Made for the way<br /><em>you want to live.</em></h2>
+          <p className="eyebrow">The Srikala Standard</p>
+          <h2>Pioneering Industrial<br /><em>Engineering Solutions.</em></h2>
+          <p className="about-lead">
+            For over four decades, Srikala Projects has stood at the vanguard of heavy steel fabrication,
+            pre-engineered structural frames, and luxury uPVC window systems. Our manufacturing plant in Mankal,
+            Maheshwaram Mandal, Ranga Reddy operates under strict ISO certification, using automated robotic workflows to
+            turn architectural and structural concepts into timeless landmarks.
+          </p>
         </div>
         <div className="benefit-grid">
           {benefits.map((benefit, index) => (
@@ -382,35 +489,43 @@ function WhyUs() {
 }
 
 const projects = [
-  { name: "Courtyard House", type: "Residential", location: "Bengaluru", image: images.projectOne },
-  { name: "Horizon Villa", type: "Villas", location: "Hyderabad", image: images.projectTwo },
-  { name: "The Glass Office", type: "Commercial", location: "Chennai", image: images.projectThree },
+  { name: "Heavy Industrial PEB Warehouse", type: "Pre-Engineered Buildings", location: "Hyderabad, Telangana", image: images.projectOne },
+  { name: "Luxury Villa Panoramic Glazing", type: "aluplast® uPVC Systems", location: "Jubilee Hills, Hyderabad", image: images.projectTwo },
+  { name: "Commercial IT Park Facade", type: "Structural Glazing & ACP", location: "HITEC City, Hyderabad", image: images.projectThree },
 ];
 
 function Projects() {
   const [filter, setFilter] = useState("All");
-  const filters = ["All", "Residential", "Villas", "Commercial"];
+  const filters = ["All", "Pre-Engineered Buildings", "aluplast® uPVC Systems", "Structural Glazing & ACP"];
   const visible = filter === "All" ? projects : projects.filter((project) => project.type === filter);
   return (
     <section className="section projects-section" id="projects">
       <div className="page-shell">
         <div className="section-heading projects-heading">
-          <div><p className="eyebrow eyebrow-light">Selected applications</p><h2>Spaces transformed<br /><em>by light.</em></h2></div>
+          <div><p className="eyebrow eyebrow-light">Project Portfolio</p><h2>Engineered structures<br /><em>built to endure.</em></h2></div>
           <div className="filter-row">
-            {filters.map((item) => <button className={filter === item ? "filter-active" : ""} onClick={() => setFilter(item)} key={item}>{item}</button>)}
+            {filters.map((item) => (
+              <button
+                className={filter === item ? "filter-active" : ""}
+                onClick={() => setFilter(item)}
+                key={item}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
         <div className="project-grid">
           {visible.map((project, index) => (
             <article className={`project-card project-${index + 1}`} key={project.name}>
-              <img src={project.image} alt={`${project.name} architectural project`} />
+              <img src={project.image} alt={`${project.name} structural engineering project`} />
               <div className="project-shade" />
               <div className="project-info"><p>{project.type} · {project.location}</p><h3>{project.name}</h3></div>
               <span className="circle-arrow circle-arrow-light"><Icon name="arrow" /></span>
             </article>
           ))}
         </div>
-        <p className="concept-note">Project imagery is representative and shown for design concept purposes.</p>
+        <p className="concept-note">Representative installation photography across our Telangana and South India projects.</p>
       </div>
     </section>
   );
@@ -418,18 +533,18 @@ function Projects() {
 
 function Process() {
   const steps = [
-    ["01", "Consult", "We understand your space, priorities and architectural intent."],
-    ["02", "Measure", "Our team assesses the site and captures accurate opening details."],
-    ["03", "Design", "Choose configurations, finishes, glass and hardware."],
-    ["04", "Make", "Your systems are produced and quality checked to specification."],
-    ["05", "Install", "Careful fitting, alignment, sealing and final inspection."],
+    ["01", "Technical Consultation", "Comprehensive review of structural drawings, loads, spans, and architectural design intent."],
+    ["02", "Engineering & Statics", "STAAD.Pro analysis, connection detailing, wind code compliance, and 3D fabrication BIM models."],
+    ["03", "Precision Manufacturing", "CNC cutting, robotic SAW welding, multi-chamber uPVC fusion, and automated paint bays."],
+    ["04", "Quality & NDT Inspection", "Ultrasonic weld inspection, DFT measurement, water-penetration testing, and pre-assembly."],
+    ["05", "Turnkey Site Erection", "On-schedule transport, crane rigging, high-tensile bolt torquing, and final structural sign-off."],
   ];
   return (
     <section className="section process-section" id="process">
       <div className="page-shell">
         <div className="section-heading split-heading">
-          <div><p className="eyebrow">From idea to installation</p><h2>A considered process.<br /><em>End to end.</em></h2></div>
-          <p>One team, one clear journey—from the first conversation to the finishing detail.</p>
+          <div><p className="eyebrow">From Blueprint to Erection</p><h2>A rigorous process.<br /><em>End to end.</em></h2></div>
+          <p>One unified engineering organization, one clear delivery journey—from initial feasibility to final site handover.</p>
         </div>
         <div className="process-list">
           {steps.map(([number, title, copy]) => (
@@ -442,10 +557,10 @@ function Process() {
 }
 
 const faqs = [
-  ["How do I choose the right window or door system?", "We begin with your opening size, desired operation, architectural style, location and performance priorities. A consultation helps narrow the most suitable options."],
-  ["Can systems be customised to my project?", "Yes. Available options can include frame colour, glass type, opening configuration, hardware and mesh, subject to the selected product system."],
-  ["What happens during a site visit?", "Our team reviews access, checks the opening condition and records the dimensions needed to prepare an accurate proposal."],
-  ["Do you provide installation and after-sales support?", "Installation and support availability are confirmed as part of your quotation, based on project location and scope."],
+  ["What divisions and services are handled in-house by Srikala Projects?", "Srikala Projects manufactures German aluplast® uPVC window & door systems, heavy structural steel fabrication, turnkey pre-engineered buildings (PEB), standing seam & sandwich roofing, ACP facade cladding, and structural glazing."],
+  ["Where is the manufacturing plant located?", "Our primary manufacturing facility is located Near Mankal Kaman, Sry No.319/A/1B/1C, Mankal, Tukkuguda, Maheshwaram Mandal, Ranga Reddy District, Telangana - 501359."],
+  ["What quality standards and certifications do you maintain?", "Our processes adhere to ISO 9001 standards, AWS D1.1 structural welding qualifications, ASTM / IS material testing protocols, and German DIN standards for aluplast® uPVC profile compounding."],
+  ["How do we request a site visit or quotation?", "You can contact our sales and engineering desk directly via phone (+91 98660 89771), email (sales@srikalaprojects.com), or submit the project specification form on this website."],
 ];
 
 function FAQ() {
@@ -453,7 +568,7 @@ function FAQ() {
   return (
     <section className="section faq-section">
       <div className="page-shell faq-grid">
-        <div><p className="eyebrow">Frequently asked</p><h2>Good questions.<br /><em>Clear answers.</em></h2><p className="faq-intro">Need something more specific? Our team can help with your product or project enquiry.</p></div>
+        <div><p className="eyebrow">Frequently asked</p><h2>Good questions.<br /><em>Clear answers.</em></h2><p className="faq-intro">Need something more specific? Our engineering desk is available to assist with custom statics or quotes.</p></div>
         <div className="accordion">
           {faqs.map(([question, answer], index) => (
             <article className={`faq-item ${active === index ? "faq-open" : ""}`} key={question}>
@@ -478,28 +593,80 @@ function Contact() {
       <div className="page-shell contact-grid">
         <div className="contact-copy">
           <p className="eyebrow eyebrow-light">Start a conversation</p>
-          <h2>Let’s make space<br /><em>for something better.</em></h2>
-          <p>Tell us a little about your project. We’ll help you find the right architectural system and next step.</p>
+          <h2>Let’s build space<br /><em>for something enduring.</em></h2>
+          <p>
+            Consult our structural engineers and uPVC specialists. We will help formulate the right specification,
+            structural load calculations, and itemized budgetary quotation.
+          </p>
           <div className="contact-methods">
-            <a href="tel:+910000000000"><Icon name="phone" /><span><small>Call our team</small>+91 00000 00000</span></a>
-            <a href="mailto:hello@aperture.example"><Icon name="mail" /><span><small>Email us</small>hello@aperture.example</span></a>
+            <a href="tel:+919866089771">
+              <Icon name="phone" />
+              <span><small>Call our engineering desk</small>+91 98660 89771</span>
+            </a>
+            <a href="mailto:sales@srikalaprojects.com">
+              <Icon name="mail" />
+              <span><small>Email sales & estimations</small>sales@srikalaprojects.com</span>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/8CgULSLTmw5RoYWv7"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon name="ruler" />
+              <span><small>Plant Location</small>Mankal, Maheshwaram Mandal, Telangana - 501359</span>
+            </a>
+            <a
+              href="https://m.indiamart.com/srikalaprojects/"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--accent)", fontSize: "14px", marginTop: "4px" }}
+            >
+              <span>View IndiaMART Profile & Catalog →</span>
+            </a>
           </div>
         </div>
         <div className="form-panel">
           {status === "success" ? (
-            <div className="success-state"><span><Icon name="check" size={32} /></span><p className="eyebrow">Enquiry received</p><h3>Thank you for getting in touch.</h3><p>This prototype has captured the success state. In a live experience, the team would follow up shortly.</p><button className="text-link" onClick={() => setStatus("idle")}>Send another enquiry <Icon name="arrow" size={17} /></button></div>
+            <div className="success-state">
+              <span><Icon name="check" size={32} /></span>
+              <p className="eyebrow">Enquiry received</p>
+              <h3>Thank you for consulting Srikala Projects.</h3>
+              <p>Our engineering team has received your details and will formulate a technical proposal shortly.</p>
+              <button className="text-link" onClick={() => setStatus("idle")}>
+                Send another enquiry <Icon name="arrow" size={17} />
+              </button>
+            </div>
           ) : (
             <form onSubmit={submit}>
               <div className="form-heading"><span>Project enquiry</span><small>All fields marked * are required</small></div>
-              <label><span>Full name *</span><input required placeholder="Your name" /></label>
+              <label><span>Full name *</span><input required placeholder="Your name or company" /></label>
               <div className="form-row">
-                <label><span>Phone number *</span><input required type="tel" placeholder="+91" /></label>
-                <label><span>Project location</span><input placeholder="City" /></label>
+                <label><span>Phone number *</span><input required type="tel" placeholder="+91 98660 89771" /></label>
+                <label><span>Project location</span><input placeholder="City, State" /></label>
               </div>
-              <label><span>Product / service of interest *</span><select required defaultValue=""><option value="" disabled>Select an option</option><option>uPVC Manufacturing</option><option>Heavy Fabrication</option><option>PEB Solutions</option><option>Roofing Systems</option><option>ACP Cladding</option><option>Structural Glazing</option></select></label>
-              <label><span>Tell us about your project</span><textarea placeholder="Project type, approximate requirements or anything else useful…" rows={3} /></label>
-              <label className="consent"><input type="checkbox" required /><span>I agree to be contacted about this enquiry and accept the privacy notice.</span></label>
-              <button className="button button-dark form-submit" type="submit">Request a consultation <Icon name="arrow" /></button>
+              <label>
+                <span>Product / service of interest *</span>
+                <select required defaultValue="">
+                  <option value="" disabled>Select an option</option>
+                  <option>uPVC Windows & Doors (aluplast®)</option>
+                  <option>Heavy Steel Fabrication</option>
+                  <option>Pre-Engineered Buildings (PEB)</option>
+                  <option>Roofing Systems</option>
+                  <option>ACP Cladding Systems</option>
+                  <option>Structural Glazing</option>
+                </select>
+              </label>
+              <label>
+                <span>Tell us about your project</span>
+                <textarea placeholder="Approximate dimensions, tonnage, drawings or requirement scope…" rows={3} />
+              </label>
+              <label className="consent">
+                <input type="checkbox" required defaultChecked />
+                <span>I agree to be contacted about this enquiry and accept the privacy notice.</span>
+              </label>
+              <button className="button button-dark form-submit" type="submit">
+                Request a consultation <Icon name="arrow" />
+              </button>
             </form>
           )}
         </div>
@@ -513,11 +680,51 @@ function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
     <footer>
       <div className="page-shell">
         <div className="footer-main">
-          <div><Brand onNavigate={onNavigate} /><p>Precision window, door and architectural systems for contemporary spaces.</p></div>
-          <div><h4>Explore</h4><a href="/#products" onClick={(e) => { e.preventDefault(); onNavigate("/#products"); }}>Products</a><a href="/#process" onClick={(e) => { e.preventDefault(); onNavigate("/#process"); }}>Services</a><a href="/#projects" onClick={(e) => { e.preventDefault(); onNavigate("/#projects"); }}>Projects</a></div>
-          <div><h4>Company</h4><a href="/#why" onClick={(e) => { e.preventDefault(); onNavigate("/#why"); }}>About</a><a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Contact</a><a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Get a quote</a></div>
           <div>
-            <h4>Core solutions</h4>
+            <Brand onNavigate={onNavigate} />
+            <p style={{ marginTop: "12px", lineHeight: "1.6" }}>
+              Four decades of defining industrial standards through precision, structural integrity, and
+              German-engineered aluplast® uPVC systems.
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--muted)", marginTop: "10px" }}>
+              📍 Near Mankal Kaman, Sry No.319/A/1B/1C, Mankal, Tukkuguda, Maheshwaram Mandal, Ranga Reddy, Telangana - 501359
+            </p>
+            <div style={{ marginTop: "12px", display: "flex", gap: "12px" }}>
+              <a
+                href="https://m.indiamart.com/srikalaprojects/"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-badge"
+              >
+                IndiaMART TrustSeal
+              </a>
+              <a
+                href="https://maps.app.goo.gl/8CgULSLTmw5RoYWv7"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-badge"
+              >
+                Google Maps
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <a href="/solutions" onClick={(e) => { e.preventDefault(); onNavigate("/solutions"); }}>Solutions Hub</a>
+            <a href="/#products" onClick={(e) => { e.preventDefault(); onNavigate("/#products"); }}>All Divisions</a>
+            <a href="/#process" onClick={(e) => { e.preventDefault(); onNavigate("/#process"); }}>Process</a>
+            <a href="/#projects" onClick={(e) => { e.preventDefault(); onNavigate("/#projects"); }}>Projects</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="/#why" onClick={(e) => { e.preventDefault(); onNavigate("/#why"); }}>About Us</a>
+            <a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Contact</a>
+            <a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Get a quote</a>
+            <a href="tel:+919866089771">+91 98660 89771</a>
+            <a href="mailto:sales@srikalaprojects.com">sales@srikalaprojects.com</a>
+          </div>
+          <div>
+            <h4>Core Solutions</h4>
             {productsData.map((p) => (
               <a
                 key={p.slug}
@@ -532,7 +739,11 @@ function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
             ))}
           </div>
         </div>
-        <div className="footer-bottom"><span>© 2026 Aperture Architectural Systems</span><span>Privacy · Terms</span><span>Concept website — catalogue pending confirmation</span></div>
+        <div className="footer-bottom">
+          <span>© 2026 Srikala Projects. Engineered to Last.</span>
+          <span>Privacy Policy · Terms of Service · Compliance</span>
+          <span>Mankal, Maheshwaram Mandal, Ranga Reddy, Telangana</span>
+        </div>
       </div>
     </footer>
   );
@@ -575,11 +786,24 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Check if we are viewing a specific product solution page
+  // Check if we are viewing the Solutions Hub or a specific product solution page
+  let isSolutionsHub = false;
   let selectedProduct = null;
-  if (currentRoute.startsWith("/solutions/")) {
-    const slug = currentRoute.replace("/solutions/", "").replace(/\/$/, "");
-    selectedProduct = productsData.find((p) => p.slug === slug);
+
+  if (currentRoute === "/solutions" || currentRoute === "/solutions/") {
+    isSolutionsHub = true;
+  } else if (currentRoute.startsWith("/solutions/")) {
+    const rawSlug = currentRoute.replace("/solutions/", "").replace(/\/$/, "");
+    if (!rawSlug) {
+      isSolutionsHub = true;
+    } else {
+      selectedProduct = productsData.find(
+        (p) => p.slug === rawSlug || p.aliases?.includes(rawSlug)
+      );
+      if (!selectedProduct) {
+        isSolutionsHub = true;
+      }
+    }
   }
 
   return (
@@ -588,6 +812,8 @@ export default function App() {
       <main>
         {selectedProduct ? (
           <ProductPage product={selectedProduct} onNavigate={navigate} />
+        ) : isSolutionsHub ? (
+          <SolutionsHub onNavigate={navigate} />
         ) : (
           <>
             <Hero onNavigate={navigate} />
@@ -602,6 +828,20 @@ export default function App() {
         )}
       </main>
       <Footer onNavigate={navigate} />
+
+      {/* Floating WhatsApp CTA */}
+      <a
+        href="https://wa.me/919866089771?text=Hello%20Srikala%20Projects,%20I%20would%20like%20to%20enquire%20about%20your%20services."
+        target="_blank"
+        rel="noreferrer"
+        className="floating-whatsapp-btn"
+        aria-label="Chat with Srikala Projects on WhatsApp"
+      >
+        <svg width={26} height={26} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.56 0 8.27 3.71 8.27 8.24 0 4.53-3.71 8.24-8.27 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.53 3.71-8.24 8.27-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.45 1.03 2.61.13.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z" />
+        </svg>
+        <span className="floating-tooltip">Chat with us on WhatsApp</span>
+      </a>
     </div>
   );
 }

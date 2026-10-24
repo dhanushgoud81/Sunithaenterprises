@@ -31,7 +31,7 @@ export default function ProductPage({ product, onNavigate }: ProductPageProps) {
               Home
             </button>
             <span className="breadcrumb-sep">/</span>
-            <button className="breadcrumb-btn" onClick={() => onNavigate("/#products")}>
+            <button className="breadcrumb-btn" onClick={() => onNavigate("/solutions")}>
               Solutions
             </button>
             <span className="breadcrumb-sep">/</span>
@@ -360,16 +360,16 @@ export default function ProductPage({ product, onNavigate }: ProductPageProps) {
                 Provide opening schedules, architectural specifications, or tentative site dimensions. Our technical estimator will formulate an itemized bill of quantities (BOQ).
               </p>
               <div className="contact-methods">
-                <a href="tel:+910000000000">
+                <a href="tel:+919866089771">
                   <span className="method-icon">📞</span>
                   <span>
-                    <small>Direct Technical Line</small>+91 (080) 4123 4567
+                    <small>Direct Technical Line</small>+91 98660 89771
                   </span>
                 </a>
-                <a href="mailto:specifications@aperture.example">
+                <a href="mailto:sales@srikalaprojects.com">
                   <span className="method-icon">✉️</span>
                   <span>
-                    <small>Engineering Desk</small>specifications@aperture.example
+                    <small>Engineering Desk</small>sales@srikalaprojects.com
                   </span>
                 </a>
               </div>

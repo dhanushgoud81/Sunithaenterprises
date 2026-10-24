@@ -1,7 +1,8 @@
 {
-  "description": "Showcases premium architectural window, door, and glazing products with detailed specs, project portfolios, and streamlined quote requests for builders and designers.",
+  "title": "Srikala Projects | Premium Industrial Engineering & Luxury uPVC Systems",
+  "description": "Over 40 years of excellence in heavy steel fabrication, pre-engineered buildings (PEB), industrial roofing, ACP cladding, structural glazing, and German aluplast uPVC window & door systems.",
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
     "addBypassLinks": false,
