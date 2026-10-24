@@ -1,4 +1,6 @@
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useState, useEffect, type FormEvent, type ReactNode } from "react";
+import { productsData } from "./data/products";
+import ProductPage from "./components/ProductPage";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&fit=crop&w=2000&q=90",
@@ -49,70 +51,200 @@ function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   );
 }
 
-function Brand() {
+function Brand({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
-    <a className="brand" href="#top" aria-label="Aperture home">
+    <a
+      className="brand"
+      href="/"
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate("/");
+      }}
+      aria-label="Aperture home"
+    >
       <span className="brand-mark"><span /></span>
       <span><strong>APERTURE</strong><small>ARCHITECTURAL SYSTEMS</small></span>
     </a>
   );
 }
 
-function Header() {
+function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+
+  function handleNavClick(path: string) {
+    setOpen(false);
+    setProductsOpen(false);
+    onNavigate(path);
+  }
+
   return (
     <>
       <header className="site-header">
         <div className="header-inner">
-          <Brand />
+          <Brand onNavigate={onNavigate} />
           <nav className="desktop-nav" aria-label="Main navigation">
-            <button className="nav-item" onClick={() => setProductsOpen(!productsOpen)}>
+            <button
+              className="nav-item"
+              onClick={() => setProductsOpen(!productsOpen)}
+              aria-expanded={productsOpen}
+            >
               Products <Icon name="chevron" size={15} />
             </button>
-            <a className="nav-item" href="#process">Services</a>
-            <a className="nav-item" href="#projects">Projects</a>
-            <a className="nav-item" href="#why">About</a>
-            <a className="nav-item" href="#contact">Contact</a>
+            <a
+              className="nav-item"
+              href="#process"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#process");
+              }}
+            >
+              Services
+            </a>
+            <a
+              className="nav-item"
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#projects");
+              }}
+            >
+              Projects
+            </a>
+            <a
+              className="nav-item"
+              href="#why"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#why");
+              }}
+            >
+              About
+            </a>
+            <a
+              className="nav-item"
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/#contact");
+              }}
+            >
+              Contact
+            </a>
           </nav>
-          <a className="button button-small desktop-quote" href="#contact">Get a quote <Icon name="arrow" size={16} /></a>
-          <button className="icon-button menu-button" onClick={() => setOpen(true)} aria-label="Open menu">
+          <a
+            className="button button-small desktop-quote"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/#contact");
+            }}
+          >
+            Get a quote <Icon name="arrow" size={16} />
+          </a>
+          <button
+            className="icon-button menu-button"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+          >
             <Icon name="menu" />
           </button>
         </div>
+
         {productsOpen && (
           <div className="product-menu">
             <div className="product-menu-inner">
               <div>
-                <p className="eyebrow">Product collections</p>
-                <h3>Systems for every opening.</h3>
+                <p className="eyebrow">Product Collections</p>
+                <h3>Systems for every architectural scale.</h3>
               </div>
-              {["uPVC Manufacturing", "Heavy Fabrication", "PEB Solutions", "Roofing Systems", "ACP Cladding", "Structural Glazing"].map((item, index) => (
-                <a href="#products" key={item} onClick={() => setProductsOpen(false)}>
-                  <span>0{index + 1}</span>{item}<Icon name="arrow" size={17} />
+              {productsData.map((item, index) => (
+                <a
+                  href={`/solutions/${item.slug}`}
+                  key={item.slug}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(`/solutions/${item.slug}`);
+                  }}
+                >
+                  <span>0{index + 1}</span>
+                  {item.title}
+                  <Icon name="arrow" size={17} />
                 </a>
               ))}
             </div>
           </div>
         )}
       </header>
+
       <div className={`mobile-drawer ${open ? "drawer-open" : ""}`} aria-hidden={!open}>
-        <div className="drawer-top"><Brand /><button className="icon-button" onClick={() => setOpen(false)} aria-label="Close menu"><Icon name="close" /></button></div>
+        <div className="drawer-top">
+          <Brand onNavigate={onNavigate} />
+          <button className="icon-button" onClick={() => setOpen(false)} aria-label="Close menu">
+            <Icon name="close" />
+          </button>
+        </div>
         <nav>
-          {["Products", "Services", "Projects", "About", "Contact"].map((item, index) => (
-            <a href={`#${item.toLowerCase()}`} key={item} onClick={() => setOpen(false)}><span>0{index + 1}</span>{item}<Icon name="arrow" /></a>
+          <a
+            href="/#products"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/#products");
+            }}
+          >
+            <span>01</span>All Products<Icon name="arrow" />
+          </a>
+          {productsData.map((p, idx) => (
+            <a
+              key={p.slug}
+              href={`/solutions/${p.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(`/solutions/${p.slug}`);
+              }}
+              style={{ fontSize: "20px", padding: "12px 0" }}
+            >
+              <span>{idx + 1}</span>{p.title}<Icon name="arrow" size={18} />
+            </a>
           ))}
+          <a
+            href="/#process"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/#process");
+            }}
+          >
+            <span>07</span>Process<Icon name="arrow" />
+          </a>
+          <a
+            href="/#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/#contact");
+            }}
+          >
+            <span>08</span>Contact<Icon name="arrow" />
+          </a>
         </nav>
-        <a className="button button-light" href="#contact" onClick={() => setOpen(false)}>Start your project <Icon name="arrow" /></a>
+        <a
+          className="button button-light"
+          href="/#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("/#contact");
+          }}
+        >
+          Start your project <Icon name="arrow" />
+        </a>
       </div>
     </>
   );
 }
 
-function Hero() {
+function Hero({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <section className="hero" id="top">
-      <img className="hero-image" src={images.hero} alt="Contemporary home with expansive architectural glazing at dusk" />
+      <img className="hero-image" src={images.hero} alt="Contemporary architectural glazing at dusk" />
       <div className="hero-overlay" />
       <div className="hero-content page-shell">
         <div className="hero-copy">
@@ -120,30 +252,41 @@ function Hero() {
           <h1>Built with precision.<br /><em>Shaped for progress.</em></h1>
           <p className="hero-description">Integrated manufacturing, structural and building-envelope solutions for ambitious industrial, commercial and architectural projects.</p>
           <div className="button-row">
-            <a className="button button-light" href="#products">Explore products <Icon name="arrow" /></a>
-            <a className="text-link text-link-light" href="#contact">Request a quote <Icon name="arrow" size={17} /></a>
+            <a
+              className="button button-light"
+              href="#products"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("products");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Explore products <Icon name="arrow" />
+            </a>
+            <a
+              className="text-link text-link-light"
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("contact");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Request a quote <Icon name="arrow" size={17} />
+            </a>
           </div>
         </div>
         <div className="hero-note">
           <span className="hero-note-line" />
           <div><small>Integrated capability</small><p>From fabrication<br />to final installation</p></div>
         </div>
-        <div className="hero-index"><span>01</span><div><i /><i /><i /></div><span>03</span></div>
+        <div className="hero-index"><span>01</span><div><i /><i /><i /></div><span>06</span></div>
       </div>
     </section>
   );
 }
 
-const categories = [
-  { title: "uPVC Manufacturing", copy: "Precision-manufactured uPVC window and door systems built for reliable performance.", image: images.upvc, tag: "01 / Manufacturing", slug: "upvc-manufacturing" },
-  { title: "Heavy Fabrication", copy: "Engineered steel fabrication for demanding industrial and structural applications.", image: images.fabrication, tag: "02 / Fabrication", slug: "heavy-fabrication" },
-  { title: "PEB Solutions", copy: "Efficient pre-engineered building systems designed for scale, speed and durability.", image: images.peb, tag: "03 / PEB", slug: "peb-solutions" },
-  { title: "Roofing Systems", copy: "High-performance roofing assemblies for industrial, commercial and institutional projects.", image: images.roofing, tag: "04 / Roofing", slug: "roofing-systems" },
-  { title: "ACP Cladding", copy: "Contemporary aluminium composite façades with precise detailing and lasting finishes.", image: images.acp, tag: "05 / Cladding", slug: "acp-cladding" },
-  { title: "Structural Glazing", copy: "Integrated glazing systems that bring transparency, performance and architectural clarity.", image: images.glazing, tag: "06 / Glazing", slug: "structural-glazing" },
-];
-
-function Products() {
+function Products({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <section className="section page-shell" id="products">
       <div className="section-heading split-heading">
@@ -151,15 +294,28 @@ function Products() {
         <div><p>Explore our complete portfolio of manufacturing, structural and building-envelope solutions—each delivered with equal focus and technical rigour.</p></div>
       </div>
       <div className="product-grid">
-        {categories.map((category) => (
-          <a className="product-card" href={`/solutions/${category.slug}`} id={category.slug} key={category.title}>
-            <img src={category.image} alt="" />
+        {productsData.map((category) => (
+          <a
+            className="product-card"
+            href={`/solutions/${category.slug}`}
+            id={category.slug}
+            key={category.slug}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate(`/solutions/${category.slug}`);
+            }}
+          >
+            <img src={category.heroImage} alt={category.title} />
             <div className="product-card-shade" />
             <span className="card-tag">{category.tag}</span>
             <div className="product-card-copy">
-              <h3>{category.title}</h3><p>{category.copy}</p>
-              <span className="solution-link">Explore Solution <Icon name="arrow" size={16} /></span>
+              <h3>{category.title}</h3>
+              <p>{category.copy}</p>
+              <span className="solution-link">
+                View Dedicated Page & Specs <Icon name="arrow" size={16} />
+              </span>
             </div>
+            <span className="circle-arrow"><Icon name="arrow" /></span>
           </a>
         ))}
       </div>
@@ -352,15 +508,29 @@ function Contact() {
   );
 }
 
-function Footer() {
+function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
     <footer>
       <div className="page-shell">
         <div className="footer-main">
-          <div><Brand /><p>Precision window, door and architectural systems for contemporary spaces.</p></div>
-          <div><h4>Explore</h4><a href="#products">Products</a><a href="#process">Services</a><a href="#projects">Projects</a></div>
-          <div><h4>Company</h4><a href="#why">About</a><a href="#contact">Contact</a><a href="#contact">Get a quote</a></div>
-          <div><h4>Core solutions</h4><a href="#upvc-manufacturing">uPVC Manufacturing</a><a href="#heavy-fabrication">Heavy Fabrication</a><a href="#peb-solutions">PEB Solutions</a></div>
+          <div><Brand onNavigate={onNavigate} /><p>Precision window, door and architectural systems for contemporary spaces.</p></div>
+          <div><h4>Explore</h4><a href="/#products" onClick={(e) => { e.preventDefault(); onNavigate("/#products"); }}>Products</a><a href="/#process" onClick={(e) => { e.preventDefault(); onNavigate("/#process"); }}>Services</a><a href="/#projects" onClick={(e) => { e.preventDefault(); onNavigate("/#projects"); }}>Projects</a></div>
+          <div><h4>Company</h4><a href="/#why" onClick={(e) => { e.preventDefault(); onNavigate("/#why"); }}>About</a><a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Contact</a><a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Get a quote</a></div>
+          <div>
+            <h4>Core solutions</h4>
+            {productsData.map((p) => (
+              <a
+                key={p.slug}
+                href={`/solutions/${p.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`/solutions/${p.slug}`);
+                }}
+              >
+                {p.title}
+              </a>
+            ))}
+          </div>
         </div>
         <div className="footer-bottom"><span>© 2026 Aperture Architectural Systems</span><span>Privacy · Terms</span><span>Concept website — catalogue pending confirmation</span></div>
       </div>
@@ -369,11 +539,69 @@ function Footer() {
 }
 
 export default function App() {
+  const [currentRoute, setCurrentRoute] = useState<string>(() => {
+    return window.location.pathname || "/";
+  });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentRoute(window.location.pathname || "/");
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  function navigate(path: string) {
+    if (path.includes("#")) {
+      const [routePath, hash] = path.split("#");
+      const targetRoute = routePath || "/";
+      if (targetRoute !== currentRoute) {
+        window.history.pushState({}, "", path);
+        setCurrentRoute(targetRoute);
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          el?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        window.history.pushState({}, "", path);
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    window.history.pushState({}, "", path);
+    setCurrentRoute(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Check if we are viewing a specific product solution page
+  let selectedProduct = null;
+  if (currentRoute.startsWith("/solutions/")) {
+    const slug = currentRoute.replace("/solutions/", "").replace(/\/$/, "");
+    selectedProduct = productsData.find((p) => p.slug === slug);
+  }
+
   return (
     <div className="app">
-      <Header />
-      <main><Hero /><Products /><Engineering /><WhyUs /><Projects /><Process /><FAQ /><Contact /></main>
-      <Footer />
+      <Header onNavigate={navigate} />
+      <main>
+        {selectedProduct ? (
+          <ProductPage product={selectedProduct} onNavigate={navigate} />
+        ) : (
+          <>
+            <Hero onNavigate={navigate} />
+            <Products onNavigate={navigate} />
+            <Engineering />
+            <WhyUs />
+            <Projects />
+            <Process />
+            <FAQ />
+            <Contact />
+          </>
+        )}
+      </main>
+      <Footer onNavigate={navigate} />
     </div>
   );
 }
