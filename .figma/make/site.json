@@ -1,0 +1,10 @@
+{
+  "description": "Showcases premium architectural window, door, and glazing products with detailed specs, project portfolios, and streamlined quote requests for builders and designers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
