@@ -61,10 +61,10 @@ function Brand({ onNavigate }: { onNavigate: (path: string) => void }) {
         e.preventDefault();
         onNavigate("/");
       }}
-      aria-label="Srikala Projects Home"
+      aria-label="Sunitha Enterprises Home"
     >
       <span className="brand-mark"><span /></span>
-      <span><strong>SRIKALA PROJECTS</strong><small>ENGINEERING & uPVC SYSTEMS</small></span>
+      <span><strong>SUNITHA ENTERPRISES</strong><small>ENGINEERING & uPVC SYSTEMS</small></span>
     </a>
   );
 }
@@ -92,7 +92,7 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
           <div className="top-info-right">
             <a href="tel:+919866089771">📞 +91 98660 89771</a>
             <span className="top-sep">|</span>
-            <a href="mailto:sales@srikalaprojects.com">✉️ sales@srikalaprojects.com</a>
+            <a href="mailto:sales@sunithaenterprises.com">✉️ sales@sunithaenterprises.com</a>
             <span className="top-sep">|</span>
             <a
               href="https://m.indiamart.com/srikalaprojects/"
@@ -275,7 +275,7 @@ function Header({ onNavigate }: { onNavigate: (path: string) => void }) {
               handleNavClick("/#why");
             }}
           >
-            <span>07</span>About Srikala<Icon name="arrow" />
+            <span>07</span>About Sunitha Enterprises<Icon name="arrow" />
           </a>
           <a
             href="/#process"
@@ -465,10 +465,10 @@ function WhyUs() {
     <section className="section why-section" id="why">
       <div className="page-shell">
         <div className="section-heading centered-heading">
-          <p className="eyebrow">The Srikala Standard</p>
+          <p className="eyebrow">The Sunitha Enterprises Standard</p>
           <h2>Pioneering Industrial<br /><em>Engineering Solutions.</em></h2>
           <p className="about-lead">
-            For over four decades, Srikala Projects has stood at the vanguard of heavy steel fabrication,
+            For over four decades, Sunitha Enterprises has stood at the vanguard of heavy steel fabrication,
             pre-engineered structural frames, and luxury uPVC window systems. Our manufacturing plant in Mankal,
             Maheshwaram Mandal, Ranga Reddy operates under strict ISO certification, using automated robotic workflows to
             turn architectural and structural concepts into timeless landmarks.
@@ -557,10 +557,10 @@ function Process() {
 }
 
 const faqs = [
-  ["What divisions and services are handled in-house by Srikala Projects?", "Srikala Projects manufactures German aluplast® uPVC window & door systems, heavy structural steel fabrication, turnkey pre-engineered buildings (PEB), standing seam & sandwich roofing, ACP facade cladding, and structural glazing."],
+  ["What divisions and services are handled in-house by Sunitha Enterprises?", "Sunitha Enterprises manufactures German aluplast® uPVC window & door systems, heavy structural steel fabrication, turnkey pre-engineered buildings (PEB), standing seam & sandwich roofing, ACP facade cladding, and structural glazing."],
   ["Where is the manufacturing plant located?", "Our primary manufacturing facility is located Near Mankal Kaman, Sry No.319/A/1B/1C, Mankal, Tukkuguda, Maheshwaram Mandal, Ranga Reddy District, Telangana - 501359."],
   ["What quality standards and certifications do you maintain?", "Our processes adhere to ISO 9001 standards, AWS D1.1 structural welding qualifications, ASTM / IS material testing protocols, and German DIN standards for aluplast® uPVC profile compounding."],
-  ["How do we request a site visit or quotation?", "You can contact our sales and engineering desk directly via phone (+91 98660 89771), email (sales@srikalaprojects.com), or submit the project specification form on this website."],
+  ["How do we request a site visit or quotation?", "You can contact our sales and engineering desk directly via phone (+91 98660 89771), email (sales@sunithaenterprises.com), or submit the project specification form on this website."],
 ];
 
 function FAQ() {
@@ -603,9 +603,9 @@ function Contact() {
               <Icon name="phone" />
               <span><small>Call our engineering desk</small>+91 98660 89771</span>
             </a>
-            <a href="mailto:sales@srikalaprojects.com">
+            <a href="mailto:sales@sunithaenterprises.com">
               <Icon name="mail" />
-              <span><small>Email sales & estimations</small>sales@srikalaprojects.com</span>
+              <span><small>Email sales & estimations</small>sales@sunithaenterprises.com</span>
             </a>
             <a
               href="https://maps.app.goo.gl/8CgULSLTmw5RoYWv7"
@@ -630,7 +630,7 @@ function Contact() {
             <div className="success-state">
               <span><Icon name="check" size={32} /></span>
               <p className="eyebrow">Enquiry received</p>
-              <h3>Thank you for consulting Srikala Projects.</h3>
+              <h3>Thank you for consulting Sunitha Enterprises.</h3>
               <p>Our engineering team has received your details and will formulate a technical proposal shortly.</p>
               <button className="text-link" onClick={() => setStatus("idle")}>
                 Send another enquiry <Icon name="arrow" size={17} />
@@ -721,7 +721,7 @@ function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
             <a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Contact</a>
             <a href="/#contact" onClick={(e) => { e.preventDefault(); onNavigate("/#contact"); }}>Get a quote</a>
             <a href="tel:+919866089771">+91 98660 89771</a>
-            <a href="mailto:sales@srikalaprojects.com">sales@srikalaprojects.com</a>
+            <a href="mailto:sales@sunithaenterprises.com">sales@sunithaenterprises.com</a>
           </div>
           <div>
             <h4>Core Solutions</h4>
@@ -740,7 +740,7 @@ function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Srikala Projects. Engineered to Last.</span>
+          <span>© 2026 Sunitha Enterprises. Engineered to Last.</span>
           <span>Privacy Policy · Terms of Service · Compliance</span>
           <span>Mankal, Maheshwaram Mandal, Ranga Reddy, Telangana</span>
         </div>
@@ -831,11 +831,11 @@ export default function App() {
 
       {/* Floating WhatsApp CTA */}
       <a
-        href="https://wa.me/919866089771?text=Hello%20Srikala%20Projects,%20I%20would%20like%20to%20enquire%20about%20your%20services."
+        href="https://wa.me/919866089771?text=Hello%20Sunitha%20Enterprises,%20I%20would%20like%20to%20enquire%20about%20your%20services."
         target="_blank"
         rel="noreferrer"
         className="floating-whatsapp-btn"
-        aria-label="Chat with Srikala Projects on WhatsApp"
+        aria-label="Chat with Sunitha Enterprises on WhatsApp"
       >
         <svg width={26} height={26} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.56 0 8.27 3.71 8.27 8.24 0 4.53-3.71 8.24-8.27 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.53 3.71-8.24 8.27-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.45 1.03 2.61.13.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z" />

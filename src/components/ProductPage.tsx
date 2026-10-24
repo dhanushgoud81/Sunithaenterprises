@@ -366,10 +366,10 @@ export default function ProductPage({ product, onNavigate }: ProductPageProps) {
                     <small>Direct Technical Line</small>+91 98660 89771
                   </span>
                 </a>
-                <a href="mailto:sales@srikalaprojects.com">
+                <a href="mailto:sales@sunithaenterprises.com">
                   <span className="method-icon">✉️</span>
                   <span>
-                    <small>Engineering Desk</small>sales@srikalaprojects.com
+                    <small>Engineering Desk</small>sales@sunithaenterprises.com
                   </span>
                 </a>
               </div>

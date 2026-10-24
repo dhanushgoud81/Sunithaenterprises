@@ -29,7 +29,7 @@ export default function SolutionsHub({ onNavigate, initialSlug }: SolutionsHubPr
   }
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Srikala Projects team, I would like to enquire about your ${activeProduct.title} (${activeProduct.subtitle}). Please share specifications and quotation.`
+    `Hello Sunitha Enterprises team, I would like to enquire about your ${activeProduct.title} (${activeProduct.subtitle}). Please share specifications and quotation.`
   );
 
   return (
@@ -46,7 +46,7 @@ export default function SolutionsHub({ onNavigate, initialSlug }: SolutionsHubPr
           </div>
 
           <div className="hub-hero-header">
-            <span className="card-tag hub-tag">Srikala Projects · Integrated Engineering</span>
+            <span className="card-tag hub-tag">Sunitha Enterprises · Integrated Engineering</span>
             <h1 className="hub-title">
               Pioneering Industrial &<br />
               <em>Architectural Engineering Solutions</em>
@@ -358,13 +358,13 @@ export default function SolutionsHub({ onNavigate, initialSlug }: SolutionsHubPr
                   <small>Call Direct</small>+91 98660 89771
                 </span>
               </a>
-              <a href="mailto:sales@srikalaprojects.com">
+              <a href="mailto:sales@sunithaenterprises.com">
                 <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="5" width="18" height="14" rx="1" />
                   <path d="m3 7 9 7 9-7" />
                 </svg>
                 <span>
-                  <small>Email</small>sales@srikalaprojects.com
+                  <small>Email</small>sales@sunithaenterprises.com
                 </span>
               </a>
               <a
@@ -391,7 +391,7 @@ export default function SolutionsHub({ onNavigate, initialSlug }: SolutionsHubPr
                   </svg>
                 </span>
                 <p className="eyebrow">Proposal Request Submitted</p>
-                <h3>Thank you for consulting Srikala Projects.</h3>
+                <h3>Thank you for consulting Sunitha Enterprises.</h3>
                 <p>
                   Our senior structural design engineer will review your project parameters and contact you shortly.
                 </p>
@@ -438,7 +438,7 @@ export default function SolutionsHub({ onNavigate, initialSlug }: SolutionsHubPr
                 </label>
                 <label className="consent">
                   <input type="checkbox" required defaultChecked />
-                  <span>I authorize Srikala Projects to contact me regarding this quotation inquiry.</span>
+                  <span>I authorize Sunitha Enterprises to contact me regarding this quotation inquiry.</span>
                 </label>
                 <button className="button button-dark form-submit" type="submit">
                   Generate Quotation Request
